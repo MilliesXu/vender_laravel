@@ -41,4 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function Register(array $fillable) {
+        $this->create($fillable);
+    }
 }

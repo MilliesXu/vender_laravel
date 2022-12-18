@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable(true);
             $table->string('uom');
-            $table->decimal('Unit_price');
+            $table->decimal('unit_price');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

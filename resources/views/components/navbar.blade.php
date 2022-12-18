@@ -9,9 +9,9 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="#" id="dashboard" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" >Dashboard</a>
+                            <a href="/" id="dashboard" class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium" >Dashboard</a>
             
-                            <a href="#" id="material" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Materials</a>
+                            <a href="/material/" id="material" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Materials</a>
                         </div>
                     </div>
                 </div>
@@ -84,9 +84,10 @@
         <div class="hidden md:hidden" id="mobile_menu">
             <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="#" id="dashboard_mobile" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
+                <a href="/" id="dashboard_mobile" class="text-gray-300 hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
         
-                <a href="#" id="material_mobile" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Materials</a>
+                <a href="/material/
+                " id="material_mobile" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Materials</a>
             </div>
             <div class="border-t border-gray-700 pt-4 pb-3">
                 <div class="flex items-center px-5">

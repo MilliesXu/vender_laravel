@@ -10,6 +10,7 @@
 </head>
 <body>
     <x-navbar />
+    <x-message />
 
     <main>
         <div class="container mx-auto">
