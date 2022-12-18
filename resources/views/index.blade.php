@@ -23,10 +23,13 @@
                     <i class="fa-10x fa-duotone fa-solid fa-tags mb-5"></i>
                     <p>Create New Tag</p>
                 </button>
-                <button class="bg-white border-4 border-red-500 w-50 h-80 text-center text-red-500 hover:bg-red-500 hover:text-white">
-                    <i class="fa-10x fa-duotone fa-solid fa-door-open mb-5"></i>
-                    <p>Sign Out</p>
-                </button>
+                <form action="/user/logout" method="post">
+                    @csrf
+                    <button class="bg-white border-4 border-red-500 w-full h-80 text-center text-red-500 hover:bg-red-500 hover:text-white" type="submit">
+                        <i class="fa-10x fa-duotone fa-solid fa-door-open mb-5"></i>
+                        <p>Sign Out</p>
+                    </button>
+                </form>
             </div>
         </div>
 

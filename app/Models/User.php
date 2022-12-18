@@ -42,7 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function Register(array $fillable) {
-        $this->create($fillable);
+    public static function register(array $formfields): User {
+        return self::create($formfields);
     }
 }

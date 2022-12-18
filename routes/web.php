@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->middleware('auth');
 
 Route::prefix('material')->group(base_path('/routes/material.php'));
 Route::prefix('user')->group(base_path('routes/user.php'));
