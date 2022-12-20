@@ -10,10 +10,10 @@ use Illuminate\Http\RedirectResponse;
 class StoreRegisterController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Register A User
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param RegisterRequest $request
+     * @return RedirectResponse
      */
     public function __invoke(RegisterRequest $request): RedirectResponse
     {

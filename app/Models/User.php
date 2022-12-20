@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -42,6 +43,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * get materials owned by a user
+     *
+     * @return HasMany
+     */
+    public function materials(): HasMany {
+        return $this->hasMany(Material::class, 'user_id');
+    }
+
+    /**
+     * Create a new user via registration
+     *
+     * @param array $formfields
+     * @return User
+     */
     public static function register(array $formfields): User {
         return self::create($formfields);
     }

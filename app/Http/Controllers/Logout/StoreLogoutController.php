@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 class StoreLogoutController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * To Logout User Out Of System
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function __invoke(Request $request): RedirectResponse
     {

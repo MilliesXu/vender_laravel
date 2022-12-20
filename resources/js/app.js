@@ -8,6 +8,8 @@ const btnMobileProfile = document.querySelector('#btn_mobile_profile');
 const mobileProfileMenu = document.querySelector('#mobile_profile_menu');
 const toast = document.querySelector('#toast');
 const toastClose = document.querySelector('#toast_close');
+const btnToggleModals = document.querySelectorAll('button[data-bs-toggle="modal"]')
+const btnCloseModals = document.querySelectorAll('button[data-bs-toggle="modal_close"]')
 
 const openCloseMenu = (element) => {
     element.classList.contains('hidden') ? element.classList.remove('hidden') : element.classList.add('hidden');
@@ -29,11 +31,22 @@ if (btnMobileProfile !== null) {
     });
 }
 
-
 if (toastClose !== null) {
     toastClose.addEventListener('click', (e) => {
         toast.style.display = 'none';
     });
 }
 
+btnToggleModals.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = document.querySelector(button.getAttribute('data-bs-target'));
+        modal.classList.remove('hidden');
+    });
+});
 
+btnCloseModals.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = document.querySelector(button.getAttribute('data-bs-target'));
+        modal.classList.add('hidden');
+    })
+})

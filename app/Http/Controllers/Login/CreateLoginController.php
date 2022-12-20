@@ -9,10 +9,10 @@ use Illuminate\View\View;
 class CreateLoginController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Show Login Page
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return View
      */
     public function __invoke(Request $request): View
     {

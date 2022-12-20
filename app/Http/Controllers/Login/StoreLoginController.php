@@ -9,10 +9,10 @@ use Illuminate\Http\RedirectResponse;
 class StoreLoginController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * To Login A Credentials
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param LoginRequest $request
+     * @return RedirectResponse
      */
     public function __invoke(LoginRequest $request): RedirectResponse
     {
