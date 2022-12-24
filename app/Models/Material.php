@@ -18,7 +18,8 @@ class Material extends Model
      * @param
      * @return BelongsTo
      */
-    public function user(): BelongsTo {
+    public function user(): BelongsTo 
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
@@ -28,12 +29,15 @@ class Material extends Model
      * @param array $filters
      * @return void
      */
-    public function scopeFilter($query, array $filters) {
-        if ($filters['tag'] ?? false) {
+    public function scopeFilter($query, array $filters) 
+    {
+        if ($filters['tag'] ?? false) 
+        {
             $query->where('tags', 'like', '%'. request('tag') . '%');
         }
 
-        if ($filters['search'] ?? false) {
+        if ($filters['search'] ?? false) 
+        {
             $query->where('name', 'like', '%'. request('search') . '%')
                 ->orWhere('description', 'like', '%'. request('search') . '%')
                 ->orWhere('uom', 'like', '%'. request('search') . '%')
@@ -47,7 +51,8 @@ class Material extends Model
      * @param array $filters
      * @return Collection
      */
-    public static function index(array $filters): Collection {
+    public static function index(array $filters): Collection 
+    {
         return self::latest()->filter($filters)->get();
     }
 
@@ -57,7 +62,8 @@ class Material extends Model
      * @param array $formfields
      * @return void
      */
-    public static function store(array $formfields) {
+    public static function store(array $formfields) 
+    {
         return self::create($formfields);
     }
 }

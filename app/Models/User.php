@@ -48,7 +48,8 @@ class User extends Authenticatable
      *
      * @return HasMany
      */
-    public function materials(): HasMany {
+    public function materials(): HasMany 
+    {
         return $this->hasMany(Material::class, 'user_id');
     }
 
@@ -58,7 +59,8 @@ class User extends Authenticatable
      * @param array $formfields
      * @return User
      */
-    public static function register(array $formfields): User {
+    public static function register(array $formfields): User 
+    {
         return self::create($formfields);
     }
 }

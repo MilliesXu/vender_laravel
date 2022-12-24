@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 Route::prefix('material')->group(base_path('/routes/material.php'));
 Route::prefix('user')->group(base_path('routes/user.php'));
+Route::prefix('tag')->group(base_path('routes/tag.php'));

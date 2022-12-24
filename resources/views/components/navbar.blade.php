@@ -12,6 +12,8 @@
                             <a href="/" id="dashboard" class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium" >Dashboard</a>
             
                             <a href="/material/" id="material" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Materials</a>
+
+                            <a href="/tag/" id="tag" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tags</a>
                         </div>
                     </div>
                 </div>
@@ -93,6 +95,9 @@
         
                 <a href="/material/
                 " id="material_mobile" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Materials</a>
+
+                <a href="/tag/
+                " id="material_mobile" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Tags</a>
             </div>
             @auth
                 <div class="border-t border-gray-700 pt-4 pb-3">

@@ -20,8 +20,10 @@
                     </a>
                 </button>
                 <button class="bg-white border-4 border-yellow-500 w-50 h-80 text-center text-yellow-500 hover:bg-yellow-500 hover:text-white">
-                    <i class="fa-10x fa-duotone fa-solid fa-tags mb-5"></i>
-                    <p>Create New Tag</p>
+                    <a href="/tag/create">
+                        <i class="fa-10x fa-duotone fa-solid fa-tags mb-5"></i>
+                        <p>Create New Tag</p>
+                    </a>
                 </button>
                 <form action="/user/logout" method="post">
                     @csrf
