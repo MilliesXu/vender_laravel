@@ -3,9 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Http\Requests\LoginRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -62,5 +65,19 @@ class User extends Authenticatable
     public static function register(array $formfields): User 
     {
         return self::create($formfields);
+    }
+
+    public static function login(LoginRequest $request): RedirectResponse
+    {
+        $formfields = $request->validated();
+
+        if (auth()->attempt($formfields)) {
+            $request->session()->regenerate();
+            return redirect('/')->with('success', 'Successfully login');
+        };
+
+        return back()->withErrors([
+            'email' => 'Invalid credentials'
+        ])->onlyInput('email');
     }
 }
