@@ -5,10 +5,23 @@ namespace App\Http\Controllers\Register;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 
 class StoreRegisterController extends Controller
 {
+    protected $user_service;
+
+    /**
+     * Controller Initiate To Use UserService
+     *
+     * @param UserService $user_service
+     */
+    public function __construct(UserService $user_service)
+    {
+        $this->user_service = $user_service;
+    }
+
     /**
      * Register A User
      *
@@ -18,11 +31,13 @@ class StoreRegisterController extends Controller
     public function __invoke(RegisterRequest $request): RedirectResponse
     {
         $formfields = $request->validated();
-        $formfields['password'] = bcrypt($formfields['password']);
-        $user = User::Register($formfields);
 
-        auth()->login($user);
-
-        return redirect('/')->with('success', 'Successfully registered and login');
+        try {
+            $this->user_service->register($formfields);
+            
+            return redirect('/')->with('success', 'Successfully registered and login');
+        } catch (\Throwable $th) {
+            return redirect('/user/register')->with('error', 'Something wrong');
+        }        
     }
 }

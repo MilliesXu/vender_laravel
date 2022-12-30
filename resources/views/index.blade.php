@@ -34,6 +34,5 @@
                 </form>
             </div>
         </div>
-
     </div>
 </x-layout>

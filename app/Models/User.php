@@ -47,7 +47,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * get materials owned by a user
+     * Get Materials Owned By A User
      *
      * @return HasMany
      */
@@ -57,27 +57,12 @@ class User extends Authenticatable
     }
 
     /**
-     * Create a new user via registration
+     * Get Tags Owned By A User
      *
-     * @param array $formfields
-     * @return User
+     * @return HasMany
      */
-    public static function register(array $formfields): User 
+    public function tags(): HasMany
     {
-        return self::create($formfields);
-    }
-
-    public static function login(LoginRequest $request): RedirectResponse
-    {
-        $formfields = $request->validated();
-
-        if (auth()->attempt($formfields)) {
-            $request->session()->regenerate();
-            return redirect('/')->with('success', 'Successfully login');
-        };
-
-        return back()->withErrors([
-            'email' => 'Invalid credentials'
-        ])->onlyInput('email');
+        return $this->hasMany(Tag::class, 'user_id');
     }
 }
