@@ -10,7 +10,7 @@ use Illuminate\Http\RedirectResponse;
 
 class StoreRegisterController extends Controller
 {
-    protected $user_service;
+    private $user_service;
 
     /**
      * Controller Initiate To Use UserService
@@ -37,7 +37,7 @@ class StoreRegisterController extends Controller
             
             return redirect('/')->with('success', 'Successfully registered and login');
         } catch (\Throwable $th) {
-            return redirect('/user/register')->with('error', 'Something wrong');
+            return back()->with('error', 'Something wrong');
         }        
     }
 }

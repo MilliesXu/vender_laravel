@@ -10,7 +10,7 @@ use Illuminate\Http\RedirectResponse;
 
 class StoreLoginController extends Controller
 {
-    protected $user_service;
+    private $user_service;
 
     /**
      * Controller Initiate To Use UserService
@@ -45,7 +45,7 @@ class StoreLoginController extends Controller
                 ])->onlyInput('email');
             } 
         } catch (\Throwable $th) {
-            return redirect('/user/login')->with('error', 'Something wrong');
+            return back()->with('error', 'Something wrong');
         }
     }
 }

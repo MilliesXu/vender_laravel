@@ -32,29 +32,7 @@ class Tag extends Model
     {
         if ($filters['search'] ?? false) 
         {
-            $query->where('name', 'like', '%'. request('search') . '%');
+            $query->where('name', 'like', '%'. $filters['search'] . '%');
         }
-    }
-
-    /**
-     * Show All Tags
-     *
-     * @param array $filter
-     * @return Collection
-     */
-    public static function index(array $filter): Collection 
-    {
-        return self::latest()->filter($filter)->get();
-    }
-
-    /**
-     * Create New Tag
-     *
-     * @param array $formfields
-     * @return void
-     */
-    public static function store(array $formfields)
-    {
-        return self::create($formfields);
     }
 }
