@@ -16,11 +16,16 @@ class StoreLogoutController extends Controller
      */
     public function __invoke(Request $request): RedirectResponse
     {
-        auth()->logout();
+        try {
+            auth()->logout();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+    
+            return redirect('/user/login')->with('success', 'Successfully logout');
+        } catch (\Throwable $th) {
+            return back('')->with('error', 'Something wrong');
+        }
 
-        return redirect('/user/login')->with('success', 'Successfully logout');
     }
 }
