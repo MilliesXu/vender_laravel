@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Material;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\MaterialRequest;
-use App\Models\Material;
 use Illuminate\Http\RedirectResponse;
 
-class StoreMaterialController extends Controller
+class StoreMaterialController extends MaterialController
 {
     /**
      * Handle the incoming request.
@@ -17,11 +15,16 @@ class StoreMaterialController extends Controller
      */
     public function __invoke(MaterialRequest $request): RedirectResponse
     {
-        $formfields = $request->validated();
-        $formfields['user_id'] = auth()->id();
+        try {
+            $formfields = $request->validated();
+            $formfields['user_id'] = auth()->id();
+    
+            $this->material_service->store($formfields);
+    
+            return redirect('/material')->with('success', 'Successfully create a material');
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Something wrong');
+        }
 
-        Material::store($formfields);
-
-        return redirect('/material')->with('success', 'Successfully create a material');
     }
 }

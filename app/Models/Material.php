@@ -33,37 +33,15 @@ class Material extends Model
     {
         if ($filters['tag'] ?? false) 
         {
-            $query->where('tags', 'like', '%'. request('tag') . '%');
+            $query->where('tags', 'like', '%'. $filters['search'] . '%');
         }
 
         if ($filters['search'] ?? false) 
         {
-            $query->where('name', 'like', '%'. request('search') . '%')
-                ->orWhere('description', 'like', '%'. request('search') . '%')
-                ->orWhere('uom', 'like', '%'. request('search') . '%')
-                ->orWhere('unit_price', 'like', '%'. request('search') . '%');
+            $query->where('name', 'like', '%'. $filters['search'] . '%')
+                ->orWhere('description', 'like', '%'. $filters['search'] . '%')
+                ->orWhere('uom', 'like', '%'. $filters['search'] . '%')
+                ->orWhere('unit_price', 'like', '%'. $filters['search'] . '%');
         }
-    }
-
-    /**
-     * Get all materials with or without filter
-     * 
-     * @param array $filters
-     * @return Collection
-     */
-    public static function index(array $filters): Collection 
-    {
-        return self::latest()->filter($filters)->get();
-    }
-
-    /**
-     * Create material
-     * 
-     * @param array $formfields
-     * @return void
-     */
-    public static function store(array $formfields) 
-    {
-        return self::create($formfields);
     }
 }

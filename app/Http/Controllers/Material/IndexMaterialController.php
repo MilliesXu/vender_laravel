@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Material;
 
-use App\Http\Controllers\Controller;
-use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class IndexMaterialController extends Controller
+class IndexMaterialController extends MaterialController
 {
     /**
      * Handle the incoming request.
@@ -17,9 +15,13 @@ class IndexMaterialController extends Controller
      */
     public function __invoke(Request $request): View
     {
-        $materials = Material::index(['search' => $request['search']]);
-        return view('material.index', [
-            'materials' => $materials,
-        ]);
+        try {
+            $materials = $this->material_service->index(['search' => $request['search']]);
+            return view('material.index', [
+                'materials' => $materials,
+            ]);
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Something wrong');
+        }
     }
 }

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Material;
 
-use App\Http\Controllers\Controller;
 use App\Models\Material;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
-class DeleteMaterialController extends Controller
+class DeleteMaterialController extends MaterialController
 {
     /**
      * Handle the incoming request.
@@ -17,7 +15,12 @@ class DeleteMaterialController extends Controller
      */
     public function __invoke(Material $material): RedirectResponse
     {
-        $material->delete();
-        return redirect('/material')->with('success', 'Successfully delete material');
+        try {
+            $this->material_service->destroy($material);
+
+            return redirect('/material')->with('success', 'Successfully delete material');
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Something wrong');
+        }
     }
 }

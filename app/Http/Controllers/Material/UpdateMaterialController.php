@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Material;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\MaterialRequest;
 use App\Models\Material;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
-class UpdateMaterialController extends Controller
+class UpdateMaterialController extends MaterialController
 {
     /**
      * Update A Material
@@ -19,10 +17,14 @@ class UpdateMaterialController extends Controller
      */
     public function __invoke(MaterialRequest $request, Material $material): RedirectResponse
     {
-        $formfields = $request->validated();
+        try {
+            $formfields = $request->validated();
 
-        $material->update($formfields);
+            $this->material_service->update($material, $formfields);
 
-        return redirect("/material/$material->id")->with('success', 'Successfully update material');
+            return redirect("/material/$material->id")->with('success', 'Successfully update material');
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Something wrong');
+        }
     }
 }

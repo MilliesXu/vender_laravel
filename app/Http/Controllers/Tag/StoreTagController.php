@@ -8,15 +8,8 @@ use App\Models\Tag;
 use App\Services\TagService;
 use Illuminate\Http\RedirectResponse;
 
-class StoreTagController extends Controller
+class StoreTagController extends TagController
 {
-    private $tag_service;
-
-    public function __construct(TagService $tag_service)
-    {
-        $this->tag_service = $tag_service;
-    }
-
     /**
      * Create Tag Controller
      *

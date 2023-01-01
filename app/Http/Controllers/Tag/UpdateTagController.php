@@ -2,28 +2,13 @@
 
 namespace App\Http\Controllers\Tag;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\TagRequest;
 use App\Models\Tag;
-use App\Services\TagService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\TryCatch;
 
-class UpdateTagController extends Controller
+
+class UpdateTagController extends TagController
 {
-    private $tag_service;
-
-    /**
-     * Construct Update Controller With TagService
-     *
-     * @param TagService $tag_service
-     */
-    public function __construct(TagService $tag_service)
-    {
-        $this->tag_service = $tag_service;
-    }
-
     /**
      * Update A Tag
      *

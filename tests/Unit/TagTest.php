@@ -29,6 +29,11 @@ class TagTest extends TestCase
         $this->assertEquals(1, $tag->user()->count());
     }
 
+    /**
+     * Test Tag Filter By Search
+     *
+     * @return void
+     */
     public function test_tag_filter()
     {
         $user = User::factory()->create();
