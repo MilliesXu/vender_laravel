@@ -28,6 +28,7 @@ class MaterialTest extends TestCase
         ]);
 
         $this->assertEquals(1, $material->user()->count());
+        $this->assertTrue($material->user()->first()->is($user));
     }
 
     /**

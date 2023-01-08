@@ -29,6 +29,7 @@ class TagTest extends TestCase
         ]);
 
         $this->assertEquals(1, $tag->user()->count());
+        $this->assertTrue($tag->user()->first()->is($user));
     }
 
     /**
