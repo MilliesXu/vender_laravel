@@ -2,14 +2,14 @@
 
 namespace Tests\Unit;
 
-use App\Models\Material;
 use App\Models\Tag;
+use Tests\TestCase;
 use App\Models\User;
-use Faker\Factory;
+use App\Models\Material;
+use App\Models\MaterialTag;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
 class UserTest extends TestCase
 {
@@ -46,5 +46,39 @@ class UserTest extends TestCase
         ]);
 
         $this->assertEquals(10, $user->tags()->count());
+    }
+
+    /**
+     * Test Get Material Tags From User
+     *
+     * @return void
+     */
+    public function test_user_material_tags()
+    {
+        $user = User::factory()->create();
+
+
+        $tag = Tag::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        $material = Material::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        $materialTag = MaterialTag::factory()->create([
+            'material_id' => $material->id,
+            'tag_id' => $tag->id,
+            'user_id' => $user->id
+        ]);
+
+        MaterialTag::factory(5)->create([
+            'material_id' => $material->id,
+            'tag_id' => $tag->id,
+            'user_id' => $user->id
+        ]);
+
+        $this->assertEquals(6, $user->material_tags()->count());
+        $this->assertTrue($user->material_tags()->first()->is($materialTag));
     }
 }

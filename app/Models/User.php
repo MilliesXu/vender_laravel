@@ -65,4 +65,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tag::class, 'user_id');
     }
+
+    /**
+     * Get Material Tags From User
+     *
+     * @return HasMany
+     */
+    public function material_tags(): HasMany
+    {
+        return $this->hasMany(MaterialTag::class, 'user_id');
+    }
 }
