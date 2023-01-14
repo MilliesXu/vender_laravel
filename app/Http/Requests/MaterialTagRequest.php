@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MaterialRequest extends FormRequest
+class MaterialTagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class MaterialRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user() != null;
+        return true;
     }
 
     /**
@@ -24,10 +24,7 @@ class MaterialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'description' => 'nullable|min:6',
-            'uom' => 'required',
-            'unit_price' => 'required'
+            'tag_ids' => 'required',
         ];
     }
 }

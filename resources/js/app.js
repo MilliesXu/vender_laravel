@@ -10,6 +10,11 @@ const toast = document.querySelector('#toast');
 const toastClose = document.querySelector('#toast_close');
 const btnToggleModals = document.querySelectorAll('button[data-bs-toggle="modal"]')
 const btnCloseModals = document.querySelectorAll('button[data-bs-toggle="modal_close"]')
+const tags = document.querySelector('#tags');
+const tagsBox = document.querySelector('#tags_box');
+const addTag = document.querySelector('#add_tag');
+const tagIds = document.querySelector('#tag_ids');
+const tagOptions = document.querySelectorAll('#tag_options');
 
 const openCloseMenu = (element) => {
     element.classList.contains('hidden') ? element.classList.remove('hidden') : element.classList.add('hidden');
@@ -32,7 +37,7 @@ if (btnMobileProfile !== null) {
 }
 
 if (toastClose !== null) {
-    toastClose.addEventListener('click', (e) => {
+    toastClose.addEventListener('click', () => {
         toast.style.display = 'none';
     });
 }
@@ -50,3 +55,46 @@ btnCloseModals.forEach(button => {
         modal.classList.add('hidden');
     })
 })
+
+if (addTag !== null) {
+    addTag.addEventListener('click', (e) => {
+        e.preventDefault();
+        const text = tags.options[tags.selectedIndex].text;
+        const value = tags.value;
+
+        // Check if tag value is not the default option
+        if (value !== 'Choose a tag') {
+            // Create new element of tag
+            const tag = document.createElement('div');
+
+            // Give the element a new id
+            tag.setAttribute('id', value);
+
+            // Give the element class
+            tag.classList.add('pl-5', 'pr-3', 'rounded-lg' ,'text-white' ,'bg-gray-700', 'flex', 'ap-x-2');
+
+            // Append child to element
+            tag.innerHTML = `<p class="my-auto">
+                            ${text}
+                        </p>
+                        <button class="px-2 text-white hover:text-gray-300">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>`;
+
+            // Append the value into the input
+            tagIds.value === '' ? tagIds.value += value : tagIds.value += `,${value}`;
+
+            // Show the selection
+            tagsBox.appendChild(tag);
+
+            // Get all the tag options and make it to array
+            const arrayTagOptions = Array.from(tagOptions);
+
+            // Disabled the tag that has been chosen
+            arrayTagOptions.filter(tag => tag.value === value).map(tag => tag.setAttribute('disabled', ''));
+
+            // Revert the selection
+            tags.selectedIndex = 0;
+        }
+    })
+}

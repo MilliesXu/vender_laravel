@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Material;
 use Illuminate\View\View;
 
-class ShowMaterialController extends Controller
+class ShowMaterialController extends MaterialController
 {
     /**
      * Show Material Detail Page
@@ -16,8 +16,10 @@ class ShowMaterialController extends Controller
      */
     public function __invoke(Material $material): View
     {
-        return view('material.show', [
+        $tags = $this->tag_service->index([]);
+        return view('material.show', data: [
             'material' => $material,
+            'tags' => $tags,
         ]);
     }
 }

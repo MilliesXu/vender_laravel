@@ -10,15 +10,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Material extends Model
 {
     use HasFactory;
+
     protected $fillable = ['name', 'description', 'uom', 'unit_price', 'user_id'];
 
     /**
      * Get owner from material
-     * 
+     *
      * @param
      * @return BelongsTo
      */
-    public function user(): BelongsTo 
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -39,14 +40,14 @@ class Material extends Model
      * @param array $filters
      * @return void
      */
-    public function scopeFilter($query, array $filters) 
+    public function scopeFilter($query, array $filters): void
     {
-        if ($filters['tag'] ?? false) 
+        if ($filters['tag'] ?? false)
         {
             $query->where('tags', 'like', '%'. $filters['search'] . '%');
         }
 
-        if ($filters['search'] ?? false) 
+        if ($filters['search'] ?? false)
         {
             $query->where('name', 'like', '%'. $filters['search'] . '%')
                 ->orWhere('description', 'like', '%'. $filters['search'] . '%')

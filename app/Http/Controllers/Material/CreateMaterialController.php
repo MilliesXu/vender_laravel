@@ -11,8 +11,8 @@ class CreateMaterialController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return View
      */
     public function __invoke(Request $request): View
     {

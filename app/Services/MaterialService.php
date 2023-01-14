@@ -30,7 +30,7 @@ class MaterialService
     {
         return Material::create($formfields);
     }
-    
+
     /**
      * Update Material From Controller
      *
