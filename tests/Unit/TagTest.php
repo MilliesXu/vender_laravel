@@ -99,4 +99,26 @@ class TagTest extends TestCase
         $this->assertEquals(1, $tags->count());
         $this->assertEquals('window', $tags[0]->name);
     }
+
+    /**
+     * Test Tag Filter Using not_include
+     * @return void
+     */
+    public function test_tag_filter_not_inlucde(): void
+    {
+        $user = User::factory()->create();
+
+        $tag = Tag::factory()->create([
+            'name' => 'window',
+            'user_id' => $user->id,
+        ]);
+
+        Tag::factory(5)->create([
+            'user_id' => $user->id,
+        ]);
+
+        $tags = Tag::filter(['not_include' => [$tag->id]])->get();
+
+        $this->assertEquals(5, $tags->count());
+    }
 }

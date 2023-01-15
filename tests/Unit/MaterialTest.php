@@ -33,6 +33,10 @@ class MaterialTest extends TestCase
         $this->assertTrue($material->user()->first()->is($user));
     }
 
+    /**
+     * Get Tags From Material
+     * @return void
+     */
     public function test_material_tags(): void
     {
         $user = User::factory()->create();
@@ -67,6 +71,46 @@ class MaterialTest extends TestCase
 
         $this->assertEquals(2, $material->tags()->count());
         $this->assertTrue($material->tags()->first()->is($tag1));
+    }
+
+    /**
+     * Test Get Tags id From Material
+     * @return void
+     */
+    public function test_material_tags_id(): void
+    {
+        $user = User::factory()->create();
+
+        $tag1 = Tag::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        $tag2 = Tag::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        Tag::factory(3)->create([
+            'user_id' => $user->id
+        ]);
+
+        $material = Material::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        MaterialTag::factory()->create([
+            'material_id' => $material->id,
+            'tag_id' => $tag1->id,
+            'user_id' => $user->id
+        ]);
+
+        MaterialTag::factory()->create([
+            'material_id' => $material->id,
+            'tag_id' => $tag2->id,
+            'user_id' => $user->id
+        ]);
+
+        $this->assertEquals(2, $material->tags_id()->count());
+        $this->assertEquals($tag1->id, $material->tags_id()->first());
     }
 
     /**

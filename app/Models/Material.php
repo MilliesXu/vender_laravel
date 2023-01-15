@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Collection;
 
 class Material extends Model
 {
@@ -32,6 +33,15 @@ class Material extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, 'material_tags');
+    }
+
+    /**
+     * Get Tag Id From Material
+     * @return Collection
+     */
+    public function tags_id(): Collection
+    {
+        return $this->tags()->pluck('tags.id');
     }
 
     /**

@@ -45,5 +45,10 @@ class Tag extends Model
         {
             $query->where('name', 'like', '%'. $filters['search'] . '%');
         }
+
+        if ($filters['not_include'] ?? false)
+        {
+            $query->whereNotIn('id', $filters['not_include']);
+        }
     }
 }
