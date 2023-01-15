@@ -16,118 +16,16 @@
 
         <div class="flex flex-col gap-x-2 md:flex-row">
             <div class="flex flex-start gap-2 grow flex-wrap mb-2 md:mb-0">
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex gap-x-2">
-                    <p class="my-auto">
-                        Black
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Aluminium
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Window
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Window
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Window
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Window
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Window
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Window
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Window
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Window
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Window
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Window
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Window
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-                <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex ap-x-2">
-                    <p class="my-auto">
-                        Window
-                    </p>
-                    <button class="px-2 text-white hover:text-gray-300">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
+                @foreach($material->tags as $tag)
+                    <div class="pl-5 pr-3 rounded-lg text-white bg-gray-700 flex gap-x-2" id="{{ $tag->name }}_{{$tag->id}}">
+                        <p class="my-auto">
+                            {{ $tag->name }}
+                        </p>
+                        <button class="px-2 text-white hover:text-gray-300">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                @endforeach
             </div>
             <div class="flex max-h-20">
                 <button class="whitespace-nowrap bg-indigo-500 px-5 py-3 text-white cursor-pointer border-2 border-transparent hover:bg-white hover:text-indigo-500 hover:border-indigo-500 text-center" data-bs-toggle="modal" data-bs-target="#modal_add_tag{{ $material->id }}" >Add Tag</button>
