@@ -1,11 +1,10 @@
 <?php
 
-namespace Tests\Unit;
+namespace Unit;
 
 use App\Models\Tag;
 use App\Models\User;
 use App\Services\TagService;
-use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
@@ -20,7 +19,7 @@ class TagServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_index_success()
+    public function test_index_success(): void
     {
         $tag_service = new TagService();
 
@@ -34,7 +33,7 @@ class TagServiceTest extends TestCase
         Tag::factory(5)->create([
             'user_id' => $user->id,
         ]);
-        
+
         $tags = $tag_service->index([]);
 
         $this->assertEquals(6, $tags->count());
@@ -45,7 +44,7 @@ class TagServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_index_with_filter_success()
+    public function test_index_with_filter_success(): void
     {
         $tag_service = new TagService();
 
@@ -71,7 +70,7 @@ class TagServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_store_success()
+    public function test_store_success(): void
     {
         $tag_service = new TagService();
 
@@ -90,7 +89,7 @@ class TagServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_update_success()
+    public function test_update_success(): void
     {
         $tag_service = new TagService();
 
@@ -118,7 +117,7 @@ class TagServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_delete_tag_success()
+    public function test_delete_tag_success(): void
     {
         $tag_service = new TagService();
 

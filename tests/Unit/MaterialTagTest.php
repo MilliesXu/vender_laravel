@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Unit;
 
 use App\Models\Tag;
 use Tests\TestCase;
@@ -20,7 +20,7 @@ class MaterialTagTest extends TestCase
      *
      * @return void
      */
-    public function test_material_tags_user()
+    public function test_material_tags_user(): void
     {
         $user = User::factory()->create();
 
@@ -41,5 +41,58 @@ class MaterialTagTest extends TestCase
 
         $this->assertEquals(1, $materialTag->user()->count());
         $this->assertTrue($materialTag->user()->first()->is($user));
+    }
+
+    /**
+     * Test Get Material From MaterialTag
+     * @return void
+     */
+    public function test_material_tags_material(): void
+    {
+        $user = User::factory()->create();
+
+        $tag = Tag::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        $material = Material::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        $materialTag = MaterialTag::factory()->create([
+            'material_id' => $material->id,
+            'tag_id' => $tag->id,
+            'user_id' => $user->id
+        ]);
+
+        $this->assertEquals(1, $materialTag->material()->count());
+        $this->assertTrue($materialTag->material()->first()->is($material));
+    }
+
+
+    /**
+     * Test Get Tag From MaterialTag
+     * @return void
+     */
+    public function test_material_tags_tag(): void
+    {
+        $user = User::factory()->create();
+
+        $tag = Tag::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        $material = Material::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        $materialTag = MaterialTag::factory()->create([
+            'material_id' => $material->id,
+            'tag_id' => $tag->id,
+            'user_id' => $user->id
+        ]);
+
+        $this->assertEquals(1, $materialTag->tag()->count());
+        $this->assertTrue($materialTag->tag()->first()->is($tag));
     }
 }

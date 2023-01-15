@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Unit;
 
 use App\Models\User;
 use App\Services\UserService;
@@ -18,7 +18,7 @@ class UserServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_login_wrong_credentials()
+    public function test_login_wrong_credentials(): void
     {
         $user_service = new UserService();
 
@@ -35,7 +35,7 @@ class UserServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_login_with_success()
+    public function test_login_with_success(): void
     {
         User::factory()->create([
             'email' => 'winzchip@gmail.com',
@@ -56,7 +56,7 @@ class UserServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_register_success()
+    public function test_register_success(): void
     {
         $user_service = new UserService();
 

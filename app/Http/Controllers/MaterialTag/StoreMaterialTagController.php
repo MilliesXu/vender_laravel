@@ -10,6 +10,13 @@ class StoreMaterialTagController extends MaterialTagController
 {
     public function __invoke(MaterialTagRequest $request, Material $material): RedirectResponse
     {
-        return redirect("material/$material->id");
+        $tag_ids = str_split($request['tag_ids']);
+
+        foreach ($tag_ids as $tag)
+        {
+            $this->material_tag_service->store((int)$tag, $material, $request->user());
+        }
+
+        return redirect("material/$material->id")->with('success', 'Successfully add new tags');
     }
 }

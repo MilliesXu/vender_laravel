@@ -1,13 +1,12 @@
 <?php
 
-namespace Tests\Unit;
+namespace Unit;
 
 use App\Models\Tag;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Material;
 use App\Models\MaterialTag;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -21,7 +20,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function test_user_materials_relationship()
+    public function test_user_materials_relationship(): void
     {
         $user = User::factory()->create();
 
@@ -37,7 +36,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function test_user_tags_relationship()
+    public function test_user_tags_relationship(): void
     {
         $user = User::factory()->create();
 
@@ -53,7 +52,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function test_user_material_tags()
+    public function test_user_material_tags(): void
     {
         $user = User::factory()->create();
 

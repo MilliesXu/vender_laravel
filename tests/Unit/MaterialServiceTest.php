@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Unit;
 
 use App\Models\Material;
 use App\Models\User;
@@ -19,7 +19,7 @@ class MaterialServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_index_with_success()
+    public function test_index_with_success(): void
     {
         $material_service = new MaterialService();
 
@@ -39,7 +39,7 @@ class MaterialServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_index_with_filter_success()
+    public function test_index_with_filter_success(): void
     {
         $material_service = new MaterialService();
 
@@ -67,7 +67,7 @@ class MaterialServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_store_success()
+    public function test_store_success(): void
     {
         $material_service = new MaterialService();
 
@@ -89,7 +89,7 @@ class MaterialServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_update_success()
+    public function test_update_success(): void
     {
         $material_service = new MaterialService();
 
@@ -118,7 +118,7 @@ class MaterialServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_destroy_success()
+    public function test_destroy_success(): void
     {
         $material_service = new MaterialService();
 

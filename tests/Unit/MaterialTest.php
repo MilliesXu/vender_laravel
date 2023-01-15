@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Unit;
 
 use App\Models\Material;
 use App\Models\MaterialTag;
@@ -21,7 +21,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_material_user()
+    public function test_material_user(): void
     {
         $user = User::factory()->create();
 
@@ -33,7 +33,7 @@ class MaterialTest extends TestCase
         $this->assertTrue($material->user()->first()->is($user));
     }
 
-    public function test_material_tags()
+    public function test_material_tags(): void
     {
         $user = User::factory()->create();
 
@@ -74,7 +74,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_material_filter()
+    public function test_material_filter(): void
     {
         $user = User::factory()->create();
 

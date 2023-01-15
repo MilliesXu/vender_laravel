@@ -39,9 +39,9 @@ class Tag extends Model
      * @param array $filters
      * @return void
      */
-    public function scopeFilter($query, array $filters) 
+    public function scopeFilter($query, array $filters): void
     {
-        if ($filters['search'] ?? false) 
+        if ($filters['search'] ?? false)
         {
             $query->where('name', 'like', '%'. $filters['search'] . '%');
         }

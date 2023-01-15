@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Unit;
 
 use App\Models\Material;
 use App\Models\Tag;
@@ -15,7 +15,7 @@ class MaterialTagServiceTest extends TestCase
     use DatabaseMigrations;
     use DatabaseTransactions;
 
-    public function test_store_material_tag()
+    public function test_store_material_tag(): void
     {
         $user = User::factory()->create();
 

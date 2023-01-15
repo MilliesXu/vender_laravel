@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Unit;
 
 use App\Models\Tag;
 use Tests\TestCase;
@@ -20,7 +20,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_tag_user()
+    public function test_tag_user(): void
     {
         $user = User::factory()->create();
 
@@ -37,7 +37,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_tag_materials()
+    public function test_tag_materials(): void
     {
         $user = User::factory()->create();
 
@@ -50,7 +50,7 @@ class TagTest extends TestCase
         ]);
 
 
-        $material3 = Material::factory()->create([
+        Material::factory()->create([
             'user_id' => $user->id
         ]);
 
@@ -81,7 +81,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_tag_filter()
+    public function test_tag_filter(): void
     {
         $user = User::factory()->create();
 
@@ -93,7 +93,7 @@ class TagTest extends TestCase
         Tag::factory(5)->create([
             'user_id' => $user->id,
         ]);
-        
+
         $tags = Tag::filter(['search' => 'window'])->get();
 
         $this->assertEquals(1, $tags->count());

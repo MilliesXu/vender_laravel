@@ -21,4 +21,22 @@ class MaterialTag extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Get Material From MaterialTag
+     * @return BelongsTo
+     */
+    public function material(): BelongsTo
+    {
+        return $this->belongsTo(Material::class);
+    }
+
+    /**
+     * Get Tag From MaterialTag
+     * @return BelongsTo
+     */
+    public function tag(): BelongsTo
+    {
+        return $this->belongsTo(Tag::class);
+    }
+
 }

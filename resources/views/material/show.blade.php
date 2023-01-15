@@ -263,7 +263,7 @@
                     To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 -->
                 <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-10/12">
-                    <form class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" action="/material/{{ $material->id }}/delete" method="post">
+                    <form class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" action="/material_tag/{{ $material->id }}/" method="post">
                         @csrf
                         <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Add Tags</label>
                         <div class="flex flex-col gap-2 md:flex-row">
