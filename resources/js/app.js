@@ -20,6 +20,20 @@ const openCloseMenu = (element) => {
     element.classList.contains('hidden') ? element.classList.remove('hidden') : element.classList.add('hidden');
 };
 
+const deleteTag = () => {
+    const deleteTagsJs = document.querySelectorAll('#delete_tag_js');
+    const deleteButtons = Array.from(deleteTagsJs);
+
+    deleteButtons.map(button => {
+        button.addEventListener('click', (e) => {
+            const arrayTagOptions = Array.from(tagOptions);
+
+            arrayTagOptions.filter(tag => tag.value === e.target.parentNode.parentElement.id).map(tag => tag.removeAttribute('disabled'));
+            e.target.parentNode.parentElement.remove();
+        });
+    })
+}
+
 if (btnProfile !== null) {
     btnProfile.addEventListener('click', () => {
         openCloseMenu(profileMenu);
@@ -68,16 +82,16 @@ if (addTag !== null) {
             const tag = document.createElement('div');
 
             // Give the element a new id
-            tag.setAttribute('id', value);
+            tag.setAttribute('id', `${value}`);
 
             // Give the element class
-            tag.classList.add('pl-5', 'pr-3', 'rounded-lg' ,'text-white' ,'bg-gray-700', 'flex', 'ap-x-2');
+            tag.classList.add('pl-5', 'pr-3', 'rounded-lg', 'text-white', 'bg-gray-700', 'flex', 'ap-x-2');
 
             // Append child to element
             tag.innerHTML = `<p class="my-auto">
                             ${text}
                         </p>
-                        <button class="px-2 text-white hover:text-gray-300">
+                        <button type="button" id="delete_tag_js" onclick="" class="px-2 text-white hover:text-gray-300">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>`;
 
@@ -95,6 +109,9 @@ if (addTag !== null) {
 
             // Revert the selection
             tags.selectedIndex = 0;
+
+            deleteTag();
         }
     })
 }
+
