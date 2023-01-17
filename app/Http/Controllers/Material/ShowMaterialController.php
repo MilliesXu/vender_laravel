@@ -16,6 +16,7 @@ class ShowMaterialController extends MaterialController
      */
     public function __invoke(Material $material): View
     {
+
         $tags = $this->tag_service->index([
             'not_include' => $material->tags_id(),
         ]);
