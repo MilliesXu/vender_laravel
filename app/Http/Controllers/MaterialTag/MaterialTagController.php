@@ -4,7 +4,6 @@ namespace App\Http\Controllers\MaterialTag;
 
 use App\Http\Controllers\Controller;
 use App\Services\MaterialTagService;
-use Illuminate\Http\Request;
 
 class MaterialTagController extends Controller
 {

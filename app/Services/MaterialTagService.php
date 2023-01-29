@@ -24,4 +24,15 @@ class MaterialTagService
             'user_id' => $user->id,
         ]);
     }
+
+
+    /**
+     * Delete A MaterialTag
+     * @param MaterialTag $material_tag
+     * @return bool
+     */
+    public function delete(MaterialTag $material_tag): bool
+    {
+        return $material_tag->delete();
+    }
 }

@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $description
+ * @property string $uom
+ * @property int $unit_price
+ * @property int $user_id
+ * @property User $user
+ */
 class Material extends Model
 {
     use HasFactory;

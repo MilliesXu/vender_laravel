@@ -5,6 +5,7 @@ namespace App\Http\Controllers\MaterialTag;
 use App\Http\Requests\MaterialTagRequest;
 use App\Models\Material;
 use Illuminate\Http\RedirectResponse;
+use Throwable;
 
 class StoreMaterialTagController extends MaterialTagController
 {
@@ -19,7 +20,7 @@ class StoreMaterialTagController extends MaterialTagController
             }
 
             return redirect("/material/$material->id")->with('success', 'Successfully add new tags');
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             return back()->with('error', 'Something wrong in the server');
         }
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Logout;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Throwable;
 
 class StoreLogoutController extends Controller
 {
@@ -21,9 +22,9 @@ class StoreLogoutController extends Controller
 
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-    
+
             return redirect('/user/login')->with('success', 'Successfully logout');
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return back('')->with('error', 'Something wrong');
         }
 

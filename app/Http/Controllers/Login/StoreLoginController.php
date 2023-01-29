@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Login;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
-use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
+use Throwable;
 
 class StoreLoginController extends Controller
 {
-    private $user_service;
+    private UserService $user_service;
 
     /**
      * Controller Initiate To Use UserService
      *
-     * @param UserService $userService
+     * @param UserService $user_service
      */
     public function __construct(UserService $user_service)
     {
@@ -43,8 +43,8 @@ class StoreLoginController extends Controller
                 return back()->withErrors([
                     'email' => 'Invalid credentials'
                 ])->onlyInput('email');
-            } 
-        } catch (\Throwable $th) {
+            }
+        } catch (Throwable $th) {
             return back()->with('error', 'Something wrong');
         }
     }

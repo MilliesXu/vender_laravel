@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Register;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
-use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
+use Throwable;
 
 class StoreRegisterController extends Controller
 {
-    private $user_service;
+    private UserService $user_service;
 
     /**
      * Controller Initiate To Use UserService
@@ -34,10 +34,10 @@ class StoreRegisterController extends Controller
 
         try {
             $this->user_service->register($formfields);
-            
+
             return redirect('/')->with('success', 'Successfully registered and login');
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return back()->with('error', 'Something wrong');
-        }        
+        }
     }
 }

@@ -12,9 +12,9 @@ class TagRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize() 
+    public function authorize(): bool
     {
-        return (auth()->user() != null) ? true : false;
+        return auth()->user() != null;
     }
 
     /**
@@ -22,7 +22,7 @@ class TagRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required', 'min:3', Rule::unique('tags', 'name')],

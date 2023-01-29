@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers\Material;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Throwable;
 
 class IndexMaterialController extends MaterialController
 {
     /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
+     * Get Materials
+     * @param Request $request
+     * @return View|RedirectResponse
      */
-    public function __invoke(Request $request): View
+    public function __invoke(Request $request): View | RedirectResponse
     {
         try {
             $materials = $this->material_service->index(['search' => $request['search']]);
             return view('material.index', [
                 'materials' => $materials,
             ]);
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return back()->with('error', 'Something wrong');
         }
     }

@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Tag;
 
 use App\Models\Tag;
 use Illuminate\Http\RedirectResponse;
+use Throwable;
 
 class DeleteTagController extends TagController
 {
     /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * Delete Tag
+     * @param Tag $tag
+     * @return RedirectResponse
      */
     public function __invoke(Tag $tag): RedirectResponse
     {
@@ -22,7 +22,7 @@ class DeleteTagController extends TagController
             }
 
             return redirect('/tag')->with('success', 'Successfully delete a tag');
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             return back()->with('error', 'Something Wrong');
         }
     }
