@@ -63,7 +63,7 @@ class MaterialTagServiceTest extends TestCase
 
         $material_tag_service = new MaterialTagService();
 
-        $result = $material_tag_service->delete($material_tag);
+        $result = $material_tag_service->delete($material, $tag);
 
         $this->assertEquals(true, $result);
     }

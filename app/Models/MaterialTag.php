@@ -2,17 +2,35 @@
 
 namespace App\Models;
 
+use Database\Factories\MaterialTagFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
+ * App\Models\MaterialTag
+ *
  * @property int $id
  * @property int $material_id
  * @property int $tag_id
  * @property int $user_id
  * @property User $user
- * @method static create(array $array)
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Material $material
+ * @property-read Tag $tag
+ * @method static MaterialTagFactory factory(...$parameters)
+ * @method static Builder|MaterialTag newModelQuery()
+ * @method static Builder|MaterialTag newQuery()
+ * @method static Builder|MaterialTag query()
+ * @method static Builder|MaterialTag whereCreatedAt($value)
+ * @method static Builder|MaterialTag whereId($value)
+ * @method static Builder|MaterialTag whereMaterialId($value)
+ * @method static Builder|MaterialTag whereTagId($value)
+ * @method static Builder|MaterialTag whereUpdatedAt($value)
+ * @method static Builder|MaterialTag whereUserId($value)
  */
 class MaterialTag extends Model
 {

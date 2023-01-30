@@ -4,8 +4,12 @@ namespace App\Services;
 
 use App\Models\Material;
 use App\Models\MaterialTag;
+use App\Models\Tag;
 use App\Models\User;
 
+/**
+ *
+ */
 class MaterialTagService
 {
 
@@ -27,12 +31,13 @@ class MaterialTagService
 
 
     /**
-     * Delete A MaterialTag
-     * @param MaterialTag $material_tag
+     * Delete Material Tag
+     * @param Material $material
+     * @param Tag $tag
      * @return bool
      */
-    public function delete(MaterialTag $material_tag): bool
+    public function delete(Material $material, Tag $tag): bool
     {
-        return $material_tag->delete();
+        return MaterialTag::query()->where('material_id', '=', $material->id)->where('tag_id', '=', $tag->id)->delete();
     }
 }
