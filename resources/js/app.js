@@ -26,15 +26,16 @@ const deleteTag = () => {
 
     deleteButtons.map(button => {
         button.addEventListener('click', (e) => {
-            e.preventDefault();
             const arrayTagOptions = Array.from(tagOptions);
 
-            arrayTagOptions.filter(tag => tag.value === e.target.parentNode.parentElement.id).map(tag => {
+            const target = e.target.id === 'delete_tag_js' ? e.target.parentElement : e.target.parentNode.parentElement;
+
+            arrayTagOptions.filter(tag => tag.value === target.id).map(tag => {
                 tag.removeAttribute('disabled');
                 tagIds.value = tagIds.value.replace(`${tag.value},`, '');
                 tagIds.value = tagIds.value.replace(`${tag.value}`, '');
+                target.remove();
             });
-            e.target.parentNode.parentElement.remove();
         });
     })
 }
@@ -76,7 +77,7 @@ btnCloseModals.forEach(button => {
 })
 
 if (addTag !== null) {
-    addTag.addEventListener('click', (e) => {
+    addTag.addEventListener('click', async (e) => {
         e.preventDefault();
         const text = tags.options[tags.selectedIndex].text;
         const value = tags.value;
