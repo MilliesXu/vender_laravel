@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Material;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
+use App\Services\TagService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class CreateMaterialController extends Controller
+class CreateMaterialController extends MaterialController
 {
     /**
      * Handle the incoming request.
@@ -16,6 +18,8 @@ class CreateMaterialController extends Controller
      */
     public function __invoke(Request $request): View
     {
-        return view('material.create');
+        $tags = $this->tag_service->index([]);
+
+        return view('material.create', ['tags' => $tags]);
     }
 }

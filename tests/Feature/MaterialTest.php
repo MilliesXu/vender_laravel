@@ -2,34 +2,36 @@
 
 namespace Tests\Feature;
 
+use App\Models\Tag;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Material;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class MaterialTest extends TestCase
 {
     use DatabaseMigrations;
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
     /**
      * Test Material Index Page As Guest Get Redirect.
      *
      * @return void
      */
-    public function test_get_material_index_page_as_guest()
+    public function test_get_material_index_page_as_guest(): void
     {
         $response = $this->get('/material');
 
         $response->assertRedirect('/user/login');
     }
 
-    public function test_get_material_index_success()
+    public function test_get_material_index_success(): void
     {
         $user = User::factory()->create();
 
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var Authenticatable $user */
         $response = $this->actingAs($user)->get('/material');
 
         $response->assertViewIs('material.index');
@@ -40,7 +42,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_get_create_material_as_guest()
+    public function test_get_create_material_as_guest(): void
     {
         $response = $this->get('/material/create');
 
@@ -52,11 +54,11 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_get_create_material_success()
+    public function test_get_create_material_success(): void
     {
         $user = User::factory()->create();
 
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var Authenticatable $user */
         $response = $this->actingAs($user)->get('/material/create');
 
         $response->assertViewIs('material.create');
@@ -67,7 +69,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_post_material_as_guest()
+    public function test_post_material_as_guest(): void
     {
         $response = $this->post('/material/store');
 
@@ -79,7 +81,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_post_material_with_success()
+    public function test_post_material_with_success(): void
     {
         $user = User::factory()->create();
 
@@ -88,6 +90,35 @@ class MaterialTest extends TestCase
             'description' => '',
             'uom' => 'meter',
             'unit_price' => 120000,
+            'tag_ids' => '',
+        ]);
+
+        $response->assertRedirect('/material');
+        $response->assertSessionHas('success', 'Successfully create a material');
+    }
+
+    /**
+     * Test Post Material With Tags With Success
+     *
+     * @return void
+     */
+    public function test_post_material_with_tags_success(): void
+    {
+        $user = User::factory()->create();
+
+        $tag1 = Tag::factory()->create([
+            'user_id' => $user->id
+        ]);
+        $tag2 = Tag::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        $response = $this->actingAs($user)->post('/material/store', [
+            'name' => 'Material One',
+            'description' => '',
+            'uom' => 'meter',
+            'unit_price' => 120000,
+            'tag_ids' => "$tag1->id,$tag2->id",
         ]);
 
         $response->assertRedirect('/material');
@@ -99,7 +130,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_show_material_as_guest()
+    public function test_show_material_as_guest(): void
     {
         $response = $this->get('/material/2');
 
@@ -111,7 +142,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_show_material_not_found()
+    public function test_show_material_not_found(): void
     {
         $user = User::factory()->create();
 
@@ -125,7 +156,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_show_material_success()
+    public function test_show_material_success(): void
     {
         $user = User::factory()->create();
 
@@ -143,7 +174,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_edit_material_as_guest()
+    public function test_edit_material_as_guest(): void
     {
         $response = $this->get('/material/2/edit');
 
@@ -155,7 +186,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_edit_material_not_found()
+    public function test_edit_material_not_found(): void
     {
         $user = User::factory()->create();
 
@@ -169,7 +200,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_edit_material_success()
+    public function test_edit_material_success(): void
     {
         $user = User::factory()->create();
 
@@ -187,7 +218,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_update_material_as_guest()
+    public function test_update_material_as_guest(): void
     {
         $response = $this->put('/material/2/update');
 
@@ -199,7 +230,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_update_material_not_found()
+    public function test_update_material_not_found(): void
     {
         $user = User::factory()->create();
 
@@ -213,7 +244,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_update_material_success()
+    public function test_update_material_success(): void
     {
         $user = User::factory()->create();
 
@@ -237,7 +268,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_destroy_material_as_guest()
+    public function test_destroy_material_as_guest(): void
     {
         $response = $this->delete('/material/2/delete');
 
@@ -249,7 +280,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_destroy_material_not_found()
+    public function test_destroy_material_not_found(): void
     {
         $user = User::factory()->create();
 
@@ -263,7 +294,7 @@ class MaterialTest extends TestCase
      *
      * @return void
      */
-    public function test_destroy_material_success()
+    public function test_destroy_material_success(): void
     {
         $user = User::factory()->create();
 

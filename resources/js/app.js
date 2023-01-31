@@ -26,9 +26,14 @@ const deleteTag = () => {
 
     deleteButtons.map(button => {
         button.addEventListener('click', (e) => {
+            e.preventDefault();
             const arrayTagOptions = Array.from(tagOptions);
 
-            arrayTagOptions.filter(tag => tag.value === e.target.parentNode.parentElement.id).map(tag => tag.removeAttribute('disabled'));
+            arrayTagOptions.filter(tag => tag.value === e.target.parentNode.parentElement.id).map(tag => {
+                tag.removeAttribute('disabled');
+                tagIds.value = tagIds.value.replace(`${tag.value},`, '');
+                tagIds.value = tagIds.value.replace(`${tag.value}`, '');
+            });
             e.target.parentNode.parentElement.remove();
         });
     })
@@ -91,7 +96,7 @@ if (addTag !== null) {
             tag.innerHTML = `<p class="my-auto">
                             ${text}
                         </p>
-                        <button type="button" id="delete_tag_js" onclick="" class="px-2 text-white hover:text-gray-300">
+                        <button type="button" id="delete_tag_js" class="px-2 text-white hover:text-gray-300">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>`;
 

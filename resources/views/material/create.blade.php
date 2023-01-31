@@ -4,7 +4,6 @@
             <div>
                 {{-- <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company"> --}}
                 <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Create Material</h2>
-                <p class="mt-2 text-center text-sm text-gray-600" />
             </div>
             <form class="mt-8 space-y-6" action="/material/store" method="POST" autocomplete="off">
                 @csrf
@@ -46,6 +45,23 @@
                     @error('unit_price')
                         <p class="text-red-500 text-sm">{{ $message }}</p>
                     @enderror
+                </div>
+
+                <div class="rounded-md shadow-sm">
+                    <input type="text" id="tag_ids" name="tag_ids">
+
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Add Tags</label>
+                    <div class="flex flex-col gap-2 md:flex-row mb-2">
+                        <select id="tags" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
+                            <option selected>Choose a tag</option>
+                            @foreach($tags as $tag)
+                                <option id="tag_options" value="{{ $tag->id }}">{{ $tag->name }}</option>
+                            @endforeach
+                        </select>
+                        <button id="add_tag" class="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto sm:text-sm">Add</button>
+                    </div>
+
+                    <div id="tags_box" class="flex flex-start gap-2 grow flex-wrap mt-4 mb-2 md:mb-0"></div>
                 </div>
 
                 <div>

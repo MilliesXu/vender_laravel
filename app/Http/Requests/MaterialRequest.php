@@ -27,7 +27,8 @@ class MaterialRequest extends FormRequest
             'name' => 'required',
             'description' => 'nullable|min:6',
             'uom' => 'required',
-            'unit_price' => 'required'
+            'unit_price' => 'required',
+            'tag_ids' => 'nullable',
         ];
     }
 }
