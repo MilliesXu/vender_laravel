@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Database\Factories\MaterialFactory;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -38,6 +39,7 @@ use Illuminate\Support\Collection;
  * @method static Builder|Material whereUom($value)
  * @method static Builder|Material whereUpdatedAt($value)
  * @method static Builder|Material whereUserId($value)
+ * @mixin Eloquent
  */
 class Material extends Model
 {
@@ -67,7 +69,7 @@ class Material extends Model
     }
 
     /**
-     * Get Tag Id From Material
+     * Get Tag id From Material
      * @return Collection
      */
     public function tags_id(): Collection

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Database\Factories\TagFactory;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -32,6 +33,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Tag whereName($value)
  * @method static Builder|Tag whereUpdatedAt($value)
  * @method static Builder|Tag whereUserId($value)
+ * @mixin Eloquent
  */
 class Tag extends Model
 {

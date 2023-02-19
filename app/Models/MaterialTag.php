@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Database\Factories\MaterialTagFactory;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,6 +32,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|MaterialTag whereTagId($value)
  * @method static Builder|MaterialTag whereUpdatedAt($value)
  * @method static Builder|MaterialTag whereUserId($value)
+ * @mixin Eloquent
  */
 class MaterialTag extends Model
 {
