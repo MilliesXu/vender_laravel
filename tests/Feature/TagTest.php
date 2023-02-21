@@ -4,10 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Tag;
 use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class TagTest extends TestCase
@@ -20,7 +19,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_get_index_tag_without_authentification()
+    public function test_get_index_tag_without_authentification(): void
     {
         $response = $this->get('/tag');
 
@@ -32,11 +31,11 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_get_index_tag_with_sucess()
+    public function test_get_index_tag_with_sucess(): void
     {
         $user = User::factory()->create();
 
-         /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+         /** @var Authenticatable $user */
         $response = $this->actingAs($user)->get('/tag');
 
         $response->assertViewIs('tag.index');
@@ -47,7 +46,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_get_create_tag_view_without_authentification()
+    public function test_get_create_tag_view_without_authentification(): void
     {
         $response = $this->get('/tag/create');
 
@@ -59,11 +58,11 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_get_create_tag_view_success()
+    public function test_get_create_tag_view_success(): void
     {
         $user = User::factory()->create();
 
-         /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+         /** @var Authenticatable $user */
         $response = $this->actingAs($user)->get('/tag/create');
 
         $response->assertViewIs('tag.create');
@@ -74,7 +73,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_post_tag_without_authentification()
+    public function test_post_tag_without_authentification(): void
     {
         $response = $this->post('/tag/store', [
             'name' => 'window',
@@ -88,7 +87,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_post_tag_name_error()
+    public function test_post_tag_name_error(): void
     {
         $user = User::factory()->create();
 
@@ -97,7 +96,7 @@ class TagTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-         /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+         /** @var Authenticatable $user */
         $response = $this->actingAs($user)->post('/tag/store', [
             'name' => 'window',
         ]);
@@ -110,11 +109,11 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_post_tag_success()
+    public function test_post_tag_success(): void
     {
         $user = User::factory()->create();
 
-         /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+         /** @var Authenticatable $user */
          $response = $this->actingAs($user)->post('/tag/store', [
             'name' => 'window',
         ]);
@@ -128,7 +127,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_show_tag_without_authentification()
+    public function test_show_tag_without_authentification(): void
     {
         $user = User::factory()->create();
 
@@ -146,11 +145,11 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_show_tag_not_found()
+    public function test_show_tag_not_found(): void
     {
         $user = User::factory()->create();
 
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var Authenticatable $user */
         $response = $this->actingAs($user)->get("/tag/1");
 
         $response->assertStatus(404);
@@ -161,7 +160,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_show_tag_with_success()
+    public function test_show_tag_with_success(): void
     {
         $user = User::factory()->create();
 
@@ -169,7 +168,7 @@ class TagTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var Authenticatable $user */
         $response = $this->actingAs($user)->get("/tag/$tag->id");
 
         $response->assertViewIs('tag.show');
@@ -180,7 +179,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_edit_tag_without_authentification()
+    public function test_edit_tag_without_authentification(): void
     {
         $user = User::factory()->create();
 
@@ -198,11 +197,11 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_edit_tag_not_found()
+    public function test_edit_tag_not_found(): void
     {
         $user = User::factory()->create();
 
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var Authenticatable $user */
         $response = $this->actingAs($user)->get("/tag/1");
 
         $response->assertStatus(404);
@@ -214,7 +213,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_edit_tag_success()
+    public function test_edit_tag_success(): void
     {
         $user = User::factory()->create();
 
@@ -222,7 +221,7 @@ class TagTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var Authenticatable $user */
         $response = $this->actingAs($user)->get("/tag/$tag->id/edit");
 
         $response->assertViewIs('tag.edit');
@@ -233,7 +232,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_update_tag_without_authorization()
+    public function test_update_tag_without_authorization(): void
     {
         $user = User::factory()->create();
 
@@ -253,11 +252,11 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_update_tag_not_found()
+    public function test_update_tag_not_found(): void
     {
         $user = User::factory()->create();
 
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var Authenticatable $user */
         $response = $this->actingAs($user)->put("/tag/1/update", [
             'name' => 'Door'
         ]);
@@ -270,7 +269,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_update_tag_name_invalid()
+    public function test_update_tag_name_invalid(): void
     {
         $user = User::factory()->create();
 
@@ -283,7 +282,7 @@ class TagTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var Authenticatable $user */
         $response = $this->actingAs($user)->put("/tag/$tag->id/update", [
             'name' => 'Door'
         ]);
@@ -296,7 +295,7 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_update_tag_success()
+    public function test_update_tag_success(): void
     {
         $user = User::factory()->create();
 
@@ -304,7 +303,7 @@ class TagTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var Authenticatable $user */
         $response = $this->actingAs($user)->put("/tag/$tag->id/update", [
             'name' => 'Door'
         ]);
@@ -312,13 +311,13 @@ class TagTest extends TestCase
         $response->assertRedirect("tag/$tag->id");
         $response->assertSessionHas('success', 'Successfully updated tag');
     }
-    
+
     /**
      * Test Delete Tag Without Authorization Get Redirected
      *
      * @return void
      */
-    public function test_delete_tag_without_authorization()
+    public function test_delete_tag_without_authorization(): void
     {
         $user = User::factory()->create();
 
@@ -336,17 +335,17 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_delete_tag_not_found()
+    public function test_delete_tag_not_found(): void
     {
         $user = User::factory()->create();
 
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var Authenticatable $user */
         $response = $this->actingAs($user)->delete("/tag/1/delete");
 
         $response->assertStatus(404);
     }
 
-    public function test_delete_tag_success()
+    public function test_delete_tag_success(): void
     {
         $user = User::factory()->create();
 
@@ -354,7 +353,7 @@ class TagTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var Authenticatable $user */
         $response = $this->actingAs($user)->delete("/tag/$tag->id/delete");
 
         $response->assertRedirect('/tag');

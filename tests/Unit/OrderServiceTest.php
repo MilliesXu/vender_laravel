@@ -33,4 +33,22 @@ class OrderServiceTest extends TestCase
 
         $this->assertEquals(5, $orders->count());
     }
+
+    /**
+     * Test Create Order with success
+     * @return void
+     */
+    public function test_create_order(): void
+    {
+        $user = User::factory()->create();
+
+        $order_service = new OrderService();
+
+        $order = $order_service->store([
+            'name' => 'VE-2022-01-00001',
+            'user_id' => $user->id
+        ]);
+
+        $this->assertEquals('VE-2022-01-00001', $order->name);
+    }
 }
