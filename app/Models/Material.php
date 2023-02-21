@@ -87,7 +87,10 @@ class Material extends Model
     {
         if ($filters['tag'] ?? false)
         {
-            $query->where('tags', 'like', '%'. $filters['search'] . '%');
+            // Filtering through relationship, using relationship that defined in model
+            $query->whereHas('tags', function($query) use ($filters) {
+                $query->where('name', 'like', '%' . $filters['tag'] . '%');
+            });
         }
 
         if ($filters['search'] ?? false)
