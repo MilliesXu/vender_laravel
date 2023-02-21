@@ -15,7 +15,7 @@ class OrderTest extends TestCase
 
 
     /**
-     *
+     * Test Get Orders As Guest Get Redirected
      * @return void
      */
     public function test_get_all_orders_as_guest(): void
@@ -25,6 +25,11 @@ class OrderTest extends TestCase
         $response->assertRedirect('/user/login');
     }
 
+
+    /**
+     * Test Get All Orders With Filter With Success
+     * @return void
+     */
     public function test_get_all_orders_with_success(): void
     {
         $user = User::factory()->create();
@@ -36,5 +41,31 @@ class OrderTest extends TestCase
         $response = $this->actingAs($user)->get('/order/');
 
         $response->assertViewIs('order.index');
+    }
+
+
+    /**
+     * Test Create Order As Guest Get Redirected
+     * @return void
+     */
+    public function test_create_order_as_guest(): void
+    {
+        $response = $this->get('/order/create');
+
+        $response->assertRedirect('/user/login');
+    }
+
+
+    /**
+     * Test Create Order With Success
+     * @return void
+     */
+    public function test_create_order_with_success(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/order/create');
+
+        $response->assertViewIs('order.create');
     }
 }
